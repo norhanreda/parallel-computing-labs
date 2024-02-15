@@ -1,9 +1,7 @@
 
 //Norhan_Reda_Abdelwahed_2_31
-#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-using namespace std;
 int concat(int a, int b) {
     int temp = b;
     while (temp > 0) {
@@ -45,25 +43,26 @@ int concat(int a, int b) {
         }
 
   }
- /*cout <<"the original array"<<endl;
+/* printf("the original array\n");
    for(int i =0 ; i<r;i++){
        for(int j=0;j<c;j++)
         {
 
-            cout<<arr[i][j]<<" ";
+            printf("%d ",arr[i][j]);
         }
-       cout<<endl;
+       printf("\n");
   }
 
-cout<<"the column sum array"<<endl;*/
+printf("the column sum array\n");*/
   for(int i= 0 ; i<c;i++)
   {
-    //cout<<colsum[i]<<" ";
+   
+    //printf("%d ",colsum[i]);
     sum+=colsum[i];
   }
 
-  //cout<<endl;
+  //printf("\n");
 
-	cout <<sum;
+	printf("%d",sum);
 	return 0;
 }
