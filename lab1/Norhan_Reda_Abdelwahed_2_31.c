@@ -1,7 +1,9 @@
 
 //Norhan_Reda_Abdelwahed_2_31
+//#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+//using namespace std;
 int concat(int a, int b) {
     int temp = b;
     while (temp > 0) {
@@ -16,6 +18,11 @@ int concat(int a, int b) {
     int sum = 0;
     r = atoi(argv[1]);
     c = atoi(argv[2]);
+     if (argc != 3 + r * c) {
+        printf("Invalid number of elements provided.\n");
+        return 1;
+    }
+
 
     int* arr[r];
     int colsum [c];
@@ -56,13 +63,14 @@ int concat(int a, int b) {
 printf("the column sum array\n");*/
   for(int i= 0 ; i<c;i++)
   {
-   
+
     //printf("%d ",colsum[i]);
     sum+=colsum[i];
   }
 
-  //printf("\n");
+  //printf("\nsummition: ");
 
 	printf("%d",sum);
+
 	return 0;
 }
