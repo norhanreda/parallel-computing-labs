@@ -16,7 +16,7 @@ def generate_test_file(file_path, rows, columns):
 # Specify the file path and matrix dimensions
 file_path = 'Q1-sample-testcases-template-file.txt'
 n_cases = 1
-sizes =[(900,1000)]
+sizes =[(1000,10)]
 
 with open(file_path, 'a') as file:
     
