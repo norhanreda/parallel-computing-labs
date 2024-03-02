@@ -12,13 +12,13 @@ def generate_test_file(file_path, rows, columns):
     file.write(content)
 
 # Specify the file path and matrix dimensions
-file_path = 'input_million0.txt'
+file_path = 'input_mil .txt'
 n_cases = 1
 sizes =[(1000000,1)]
 
 with open(file_path, 'a') as file:
     
-    file.write(str(n_cases) + '\n')
+    # file.write(str(n_cases) + '\n')
 
     # Generate the test file
     for size in sizes:
