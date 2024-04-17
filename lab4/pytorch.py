@@ -63,7 +63,7 @@ image_list = []
 for image_file in image_files:
    # Check if the file has one of the allowed formats
   if image_file.lower().endswith(allowed_formats):
-    print(image_file)
+    # print(image_file)
     # Read the RGB image using OpenCV
     image = cv2.imread(os.path.join(input_path, image_file))
     imageShape0 =  image.shape[0] 
