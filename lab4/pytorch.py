@@ -6,8 +6,8 @@ import time
 import numpy as np
 import sys
 import os
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(torch.cuda.is_available())
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# print(torch.cuda.is_available())
 
 # Define the mask tensor
 file_path = sys.argv[4]
@@ -22,7 +22,7 @@ lines = [line.strip() for line in lines]
 
 # Extract the first line and assign it to a variable
 MASKDIM = int(lines[0])
-print("maskdim", MASKDIM)
+# print("maskdim", MASKDIM)
 # Extract the remaining lines and create a matrix
 mask = [(line.split()) for line in lines[1:]]
 # Convert the list to a numpy array
@@ -30,19 +30,19 @@ array_2d = np.array(mask, dtype=float)
 
 mask = np.repeat(array_2d[np.newaxis, ...], 3, axis=0)
 
-print(mask)
+# print(mask)
 
-# Process the variables
-print("MASKDIM:", MASKDIM)
-print("Matrix:")
-# for row in mask:
-#     print(row)
-print("mask shape",mask.shape)
+# # Process the variables
+# print("MASKDIM:", MASKDIM)
+# print("Matrix:")
+# # for row in mask:
+# #     print(row)
+# print("mask shape",mask.shape)
 
 # Convert the mask to a PyTorch tensor
 mask = torch.from_numpy(mask)
 
-print(mask)
+# print(mask)
 
 mask = mask.unsqueeze(0).unsqueeze(0)[:,:3,:,:,:]
 mask = mask.float()
