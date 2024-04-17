@@ -69,7 +69,7 @@ for image_file in image_files:
     imageShape0 =  image.shape[0] 
     imageShape1 =  image.shape[1] 
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    print("image file",image_file)
+    # print("image file",image_file)
     
     # print(image[0])
     image_array = np.array(image)
@@ -79,7 +79,7 @@ for image_file in image_files:
 
     # Define the padding size
     padding = (MASKDIM - 1) // 2
-    print(padding)
+    # print(padding)
 
     pad_height = (padding, padding)  # Pad 2 pixels on each side along height
     pad_width = (padding, padding)  # Pad 2 pixels on each side along width
@@ -87,13 +87,13 @@ for image_file in image_files:
 
     # Pad the image
     padded_image = np.pad(image, (pad_height, pad_width, pad_channels), mode='constant', constant_values=0)  # Pad with zeros
-    print(padded_image.shape)
-    print("Data type of input_image:", padded_image.dtype)
+    # print(padded_image.shape)
+    # print("Data type of input_image:", padded_image.dtype)
     # Convert the image to a PyTorch tensor
     transform = transforms.ToTensor()
     input_image = transform(padded_image)
-    print(input_image.shape)
-    print("Data type of input_image:", input_image.dtype)
+    # print(input_image.shape)
+    # print("Data type of input_image:", input_image.dtype)
 
     input_image = input_image * 255
 
@@ -106,19 +106,19 @@ batch_images = torch.stack(image_list, dim=0)
 # # Reshape the tensor to match the expected shape (batch_size, channels, depth, height, width)
 # batch_images = batch_images.unsqueeze(2).expand(-1, -1, desired_dims[0], -1, -1)
 batch_images = batch_images.unsqueeze(1)
-print("batch_images shape",batch_images.shape)
-print("mask size",mask.shape)
+# print("batch_images shape",batch_images.shape)
+# print("mask size",mask.shape)
 # Perform the 3D convolution using PyTorch
 # Start the timer
 start_time = time.time()
 output_tensor = F.conv3d(batch_images, mask)
-print("output tensor",output_tensor.shape)
+# print("output tensor",output_tensor.shape)
 # Stop the timer
 end_time = time.time()
 output_tensor = output_tensor.to(torch.int)
 output_tensor = output_tensor.squeeze(2).numpy()
-print("output tensor",output_tensor.shape)
-print("shape",output_tensor.shape[0])
+# print("output tensor",output_tensor.shape)
+# print("shape",output_tensor.shape[0])
 if not os.path.exists(output_path):
     # Create the folder using os.mkdir()
     os.mkdir(output_path)
@@ -127,9 +127,10 @@ else:
     print(f"Folder already exists at: {output_path}")
 for i in range(output_tensor.shape[0]):
   output_array = output_tensor[i]
-  print(output_array.shape)
+#   print(output_array.shape)
   output_array = np.clip(output_array, 0, 255)  # Clip values to the range [0, 255]
-  print(output_array)
+#   print(output_array)
   cv2.imwrite(output_path+'/'+'image'+str(i)+'.jpg', output_array.reshape(imageShape0 , imageShape1, 1))
 
-
+running_time = end_time-start_time
+print("execution time",running_time)
